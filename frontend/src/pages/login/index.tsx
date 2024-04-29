@@ -38,6 +38,10 @@ export default function Login() {
         }
     }, [username, password]);
 
+    const goToHome = () => {
+        navigate("/home");
+    };
+
     return (
         <DivMain>
             <TextMain>
@@ -68,6 +72,7 @@ export default function Login() {
                 />
             </Formulario>
             <ButtonConponent
+                onClick={() => goToHome()}
                 variant="contained"
                 value="Entrar"
                 height="58px"

@@ -19,21 +19,17 @@ export default function Routes() {
             <Route path="*" element={<NotFound />} />
 
             <Route path="/home" element={
-                <PrivateRoute>
-                    <Home />
-                </PrivateRoute>
+                <Home />
             }
 
             />
             <Route path="/dashboard" element={
-                <PrivateRoute>
-                    <Dashboard />
-                </PrivateRoute>}
+                <Dashboard />
+            }
             />
             <Route path="/users" element={
-                <PrivateRoute>
-                    <Users />
-                </PrivateRoute>}
+                <Users />
+            }
             />
         </RoutesWrapper>
 

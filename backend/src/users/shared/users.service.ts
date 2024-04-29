@@ -107,7 +107,6 @@ export class UsersService {
         user.users_email = updateDto.users_email;
         user.users_update_data = new Date();
         user.users_status = updateDto.users_status;
-        const login = await this.getByLogin(updateDto.users_email);
 
         if (updateDto.users_password) {
             user.users_password = updateDto.users_password;

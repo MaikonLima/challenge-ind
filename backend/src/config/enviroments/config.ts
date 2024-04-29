@@ -14,7 +14,13 @@ export default () => ({
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
-        entities: ['dist/**/*.entity{.ts,.js}'],
+        entities: ["dist/**/*.entity{.ts,.js}"],
+        migrationsTableName: 'migration',
+        migrations: ['src/migration/*{.ts,.js}'],
+        cli: {
+            migrationsDir: 'src/migration',
+        },
+        autoLoadEntities: true,
         synchronize: false,
         extra: {
             trustServerCertificate: true,

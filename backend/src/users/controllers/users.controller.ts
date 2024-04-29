@@ -24,6 +24,7 @@ export class UsersController {
         }
     }
 
+    @IsPublic()
     @Put(':id')
     async updateUser(
         @Param('id') id: number,
@@ -31,8 +32,8 @@ export class UsersController {
     ) {
         return this.userService.update(id, updateDto);
     }
-
-    // @UseGuards(LocalAuthGuard)
+    
+    @IsPublic()
     @Get()
     getAllUsers(
         @Query() search: QueryUserDto,

@@ -19,7 +19,7 @@ export class AuthController {
     @IsPublic()
     @Post('login')
     @HttpCode(HttpStatus.OK)
-    // @UseGuards(LocalAuthGuard)
+    @UseGuards(LocalAuthGuard)
     @ApiParam({ name: 'password', type: 'string', required: true })
     @ApiParam({ name: 'email', type: 'string', required: true })
     login(@Request() req: AuthRequest) {
