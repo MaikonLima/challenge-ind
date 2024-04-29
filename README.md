@@ -1,33 +1,91 @@
-<h1>Desafio Técnico - Desenvolvedor</h1>
 
-Este projeto foi desenvolvido com 
+# Desafio Técnico - Desenvolvedor
 
-<h2>Frontend</h2>
+Este projeto foi desenvolvido com utilizando as tecnologias mais atuais no mundo. O intuito do sistema é realizar o cadastro de usuários seguindo as regras de aunteticação de usuários com os seguintes perfis, admin e user.
 
-Vite
-React Router Dom
-Axios
-MUI
-styled-components
+## Funcionalidades
 
-<h2>Backend</h2>
+### Usuários
+- Cadastro de Usuários
+- Listagem de Usuários
+- Edição de Usuários
+- Delete de Usuários
 
-<div>
-  NESTJS
-  TypeORM
-  JWT
-  Swagger
-  Guards
-  Strategies
-  JWT
-</div>
+### Dashboard
+- Gráfico de barras
 
-Execução do projeto:
+## Backend
 
-Entre na pasta backend e execute o seguinte comando para iniciar o servidor:
+- NESTJS
+- TypeORM
+- JWT
+- Swagger
+- Guards
+- Strategies
+- JWT
 
-cd nome-do-projeto
-npm run start:dev
+## Frontend
 
-<h2>Docker</h2>
-O Docker foi utilizado para a containerização do ambiente de desenvolvimento e produção do projeto, garantindo portabilidade e consistência entre diferentes ambientes de execução.
+Algumas das tecnologias usadas no projeto:
+
+- Vite
+- React-Router-Dom
+- Axios
+- MUI
+- Styled-components
+- Chart.js
+- react-chartjs-2
+
+## Rodando localmente
+
+Clone o projeto
+
+Frontend:
+
+```bash
+  git clone https://github.com/MaikonLima/challenge-ind
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd my-project
+```
+
+Instale as dependências
+
+```bash
+  yarn install
+```
+
+Inicie o servidor
+
+```bash
+  yarn run dev
+```
+
+Backend:
+
+```bash
+  git clone https://github.com/MaikonLima/challenge-ind
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd my-project
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run start:dev
+```
+
+
