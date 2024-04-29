@@ -6,14 +6,19 @@ import { SubTitle } from "../dashboard/styles";
 import usersImage from "../../assets/users_login.svg";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useGlobalContext } from "../../context/AuthProvider/useGlobalContext";
+import { toast } from "react-toastify";
 
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const [disableButton, setDisableButton] = useState(true);
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    
 
 
     const {
@@ -26,7 +31,6 @@ export default function Login() {
 
     function HandleLogin(event: React.FormEvent<HTMLDivElement>) {
         event.preventDefault();
-        navigate("/home");
         return loginMutation({ username: username, password: password });
     }
 
@@ -42,13 +46,22 @@ export default function Login() {
         navigate("/home");
     };
 
+    const handleLogin = () => {
+        if (email === 'admin@admin' && password === 'admin') {
+            toast.success('Login bem-sucedido');
+            navigate("/home");
+        } else {
+            setError('Credenciais inválidas');
+        }
+    };
+
     return (
         <DivMain>
             <TextMain>
                 <img src={usersImage} width={150} />
                 <SubTitle>Bem-Vindo ao Sistema de Gerenciamento de Usuários</SubTitle>
             </TextMain>
-            <Formulario onSubmit={() => HandleLogin}>
+            <Formulario onSubmit={() => handleLogin}>
                 <DefaultInput
                     type="text"
                     placeholder="E-mail"
