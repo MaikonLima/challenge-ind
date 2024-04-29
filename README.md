@@ -1,28 +1,95 @@
-README
 
-Este é um projeto que utiliza diversas tecnologias tanto no frontend quanto no backend para criar uma aplicação web. Abaixo estão listadas as principais tecnologias usadas em cada parte do projeto:
+# Desafio Técnico - Desenvolvedor
 
-Frontend
+Este projeto foi desenvolvido com utilizando as tecnologias mais atuais no mundo. O intuito do sistema é realizar o cadastro de usuários seguindo as regras de aunteticação de usuários com os seguintes perfis, admin e user.
 
-Vite: Utilizado como a principal ferramenta de build e desenvolvimento do frontend. Vite é um build tool para aplicações modernas de JavaScript e TypeScript.
-React Router Dom: Utilizado para o desenvolvimento das rotas da aplicação e para proteger as rotas que necessitam de autenticação.
-Axios: Biblioteca utilizada para realizar chamadas à API do backend.
-MUI: Biblioteca de estilos utilizada para o desenvolvimento e componentização de alguns elementos da interface do usuário.
+## Funcionalidades
 
-Backend
+### Usuários
+- Cadastro de Usuários
+- Listagem de Usuários
+- Edição de Usuários
+- Delete de Usuários
 
-NESTJS: Utilizado para o desenvolvimento da API RESTful. NESTJS é um framework para construção de aplicativos Node.js eficientes, escaláveis e confiáveis.
-TypeORM: Principal ferramenta utilizada para a manipulação e execução de consultas SQL no banco de dados. TypeORM é um ORM (Object-Relational Mapping) para TypeScript e JavaScript.
-JWT: Utilizado para a proteção das rotas da API, possibilitando a autenticação e autorização de usuários.
+### Dashboard
+- Gráfico de barras
 
-xecução do projeto
+## Backend
 
-Entre na pasta backend e execute o seguinte comando para iniciar o servidor:
+- NESTJS
+- TypeORM
+- JWT
+- Swagger
+- Guards
+- Strategies
+- JWT
 
-cd nome-do-projeto
-npm run start:dev
+## Frontend
 
-Docker
-O Docker foi utilizado para a containerização do ambiente de desenvolvimento e produção do projeto, garantindo portabilidade e consistência entre diferentes ambientes de execução.
+Algumas das tecnologias usadas no projeto:
 
-Este README fornece apenas uma visão geral das principais tecnologias utilizadas no projeto. Para mais informações sobre como configurar e executar o projeto, consulte a documentação específica fornecida junto com o código-fonte
+- Vite
+- React-Router-Dom
+- Axios
+- MUI
+- Styled-components
+- Chart.js
+- react-chartjs-2
+
+## Rodando localmente
+
+Clone o projeto
+
+Frontend:
+
+```bash
+  git clone https://github.com/MaikonLima/challenge-ind
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd my-project
+```
+
+Instale as dependências
+
+```bash
+  yarn install
+```
+
+Inicie o servidor
+
+```bash
+  yarn run dev
+```
+
+Backend:
+
+```bash
+  git clone https://github.com/MaikonLima/challenge-ind
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd my-project
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run start:dev
+```
+
+## Autores
+
+- [@maikonLima](https://www.github.com/maikonLima)
+
+
