@@ -2,7 +2,7 @@
 
 Este é um projeto que utiliza diversas tecnologias tanto no frontend quanto no backend para criar uma aplicação web. Abaixo estão listadas as principais tecnologias usadas em cada parte do projeto:
 
-<2>Frontend</h2>
+<h2>Frontend</h2>
 
 Vite: Utilizado como a principal ferramenta de build e desenvolvimento do frontend. Vite é um build tool para aplicações modernas de JavaScript e TypeScript.
 React Router Dom: Utilizado para o desenvolvimento das rotas da aplicação e para proteger as rotas que necessitam de autenticação.
