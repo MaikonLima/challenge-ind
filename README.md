@@ -5,6 +5,10 @@ Este projeto foi desenvolvido com utilizando as tecnologias mais atuais no mundo
 
 ## Funcionalidades
 
+###
+- email: admin@admin
+- password: admin
+
 ### Usuários
 - Cadastro de Usuários
 - Listagem de Usuários
