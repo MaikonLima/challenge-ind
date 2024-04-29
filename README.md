@@ -88,4 +88,8 @@ Inicie o servidor
   npm run start:dev
 ```
 
+## Autores
+
+- [@maikonLima](https://www.github.com/maikonLima)
+
 
