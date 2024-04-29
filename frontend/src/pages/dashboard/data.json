@@ -1,0 +1,22 @@
+{
+    "Janeiro": {
+        "ativos": 150,
+        "inativos": 50
+    },
+    "Fevereiro": {
+        "ativos": 160,
+        "inativos": 45
+    },
+    "Março": {
+        "ativos": 170,
+        "inativos": 40
+    },
+    "Abril": {
+        "ativos": 180,
+        "inativos": 35
+    },
+    "Maio": {
+        "ativos": 190,
+        "inativos": 30
+    }
+}
