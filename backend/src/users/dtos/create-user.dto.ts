@@ -1,4 +1,4 @@
-import { IsBoolean, IsDate, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsDate, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, isNumber } from 'class-validator';
 import { UserEntity } from "../entities/user.entity";
 import { ApiProperty, OmitType } from '@nestjs/swagger';
 
@@ -39,4 +39,10 @@ export class CreateUserDto extends OmitType(UserEntity, ['user_id']) {
   @IsDate()
   @ApiProperty()
   users_create_date: Date;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @IsDate()
+  @ApiProperty()
+  user_profile_id: number;
 }

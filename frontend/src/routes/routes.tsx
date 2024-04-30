@@ -1,8 +1,8 @@
 import {
-    Routes as RoutesWrapper,
-    Route,
-    Outlet,
-    Navigate,
+  Routes as RoutesWrapper,
+  Route,
+  Outlet,
+  Navigate,
 } from "react-router-dom";
 import Login from "../pages/login";
 import Dashboard from "../pages/dashboard";
@@ -12,26 +12,32 @@ import PrivateRoute from "./PrivateRoute";
 import NotFound from "../pages/notfound";
 
 export default function Routes() {
-    return (
-        <RoutesWrapper>
-            <Route path="/" element={<Login />} />
+  return (
+    <RoutesWrapper>
+      <Route path="/" element={<Login />} />
 
-            <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
 
-            <Route path="/home" element={
-                <Home />
-            }
+      <Route path="/home" element={
+        <PrivateRoute>
+          <Home />
+        </PrivateRoute>
+      }
 
-            />
-            <Route path="/dashboard" element={
-                <Dashboard />
-            }
-            />
-            <Route path="/users" element={
-                <Users />
-            }
-            />
-        </RoutesWrapper>
+      />
+      <Route path="/dashboard" element={
+        <PrivateRoute>
+          <Dashboard />
+        </PrivateRoute>
+      }
+      />
+      <Route path="/users" element={
+        <PrivateRoute>
+          <Users />
+        </PrivateRoute>
+      }
+      />
+    </RoutesWrapper>
 
-    );
+  );
 }

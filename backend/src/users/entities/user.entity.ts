@@ -28,4 +28,7 @@ export class UserEntity {
 
     @Column()
     users_create_date: Date;
+
+    @Column()
+    user_profile_id: number;
 }

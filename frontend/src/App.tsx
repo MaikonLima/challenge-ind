@@ -6,6 +6,7 @@ import { GlobalStyles } from './styles/global'
 import Routes from './routes/routes'
 import { StyledToast } from './styles/toastStyles'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { AuthProvider } from './context/AuthProvider'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,9 +25,9 @@ function App() {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
-          {/* <AuthProvider> */}
-          <Routes />
-          {/* </AuthProvider> */}
+          <AuthProvider>
+           <Routes />
+          </AuthProvider>
 
           <StyledToast
             position="top-right"

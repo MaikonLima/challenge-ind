@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Brackets, Repository } from 'typeorm';
 import { UserEntity } from '../entities/user.entity';
@@ -11,6 +11,9 @@ import { hash } from 'src/utils/hash';
 import { converteBooleanToBit } from 'src/utils/boolean.bit';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { GenericException } from 'src/utils/notfound';
+import { Validations } from 'src/common/common/validations';
+import { ErroResponse } from 'src/common/common/error-response';
+import { CodeError, CodeObject, ObjectSize } from 'src/common/common/Enums';
 
 @Injectable()
 export class UsersService {
@@ -30,10 +33,13 @@ export class UsersService {
 
         user.users_create_date = new Date();
         user.users_name = user.users_name;
+        user.users_surname = user.users_surname;
+        user.users_access_level = user.users_access_level;
         user.users_password = user.users_password;
         user.users_email = user.users_email;
         user.users_status = !!converteBooleanToBit(user.users_status);
-        user.users_password = await hash(user.users_password)
+        user.users_password = await hash(user.users_password);
+        user.user_profile_id = user.user_profile_id;
 
         if (userEmail) {
             throw new EmailException();
@@ -129,5 +135,23 @@ export class UsersService {
         const data = queryResult.map(item => parseInt(item.count, 10));
 
         return { labels, data };
+    }
+
+    async updateRefreshToken(id: number, refresh_token: string) {
+
+        if (id > ObjectSize.INTEGER) {
+            throw new BadRequestException(new ErroResponse(CodeError.INVALID_NUMBER, `Número de id inválido`, CodeObject.ID))
+        }
+
+        const user = await this.getById(id)
+
+        if (!user) {
+            throw new NotFoundException(new ErroResponse(CodeError.NOT_FOUND, `Usuario com id ${id} não existe`, CodeObject.USER))
+        }
+
+        user.user_refresh_token = refresh_token
+
+        await this.userRepository.save(user)
+
     }
 }

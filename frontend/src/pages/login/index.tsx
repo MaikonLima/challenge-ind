@@ -1,59 +1,32 @@
 import { DivMain, Formulario, TextMain } from "./styles";
-import { useNavigate } from "react-router-dom";
 import ButtonConponent from "../../components/buttom_component";
 import { DefaultInput } from "../../components/input_component";
 import { SubTitle } from "../dashboard/styles";
 import usersImage from "../../assets/users_login.svg";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useState } from "react";
 import { useGlobalContext } from "../../context/AuthProvider/useGlobalContext";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
-    const [username, setUsername] = useState('');
-    const [disableButton, setDisableButton] = useState(true);
-    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-
-    
-
-
+    const navigate = useNavigate();
     const {
-        loginMutation
+        loginMutation,
     } = useGlobalContext();
+
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
 
-    function HandleLogin(event: React.FormEvent<HTMLDivElement>) {
+    async function HandleLogin(event: React.FormEvent<HTMLDivElement>) {
         event.preventDefault();
-        return loginMutation({ username: username, password: password });
+        navigate('/home');
+        return await loginMutation({ username: email, password: password });
     }
-
-    useEffect(() => {
-        if (username !== '' && password !== '') {
-            setDisableButton(false);
-        } else {
-            setDisableButton(true);
-        }
-    }, [username, password]);
-
-    const goToHome = () => {
-        navigate("/home");
-    };
-
-    const handleLogin = () => {
-        if (email === 'admin@admin' && password === 'admin') {
-            toast.success('Login bem-sucedido');
-            navigate("/home");
-        } else {
-            setError('Credenciais inválidas');
-        }
-    };
 
     return (
         <DivMain>
@@ -61,13 +34,13 @@ export default function Login() {
                 <img src={usersImage} width={150} />
                 <SubTitle>Bem-Vindo ao Sistema de Gerenciamento de Usuários</SubTitle>
             </TextMain>
-            <Formulario onSubmit={() => handleLogin}>
+            <Formulario onSubmit={() => HandleLogin}>
                 <DefaultInput
                     type="text"
                     placeholder="E-mail"
-                    value={username}
+                    value={email}
                     onChange={
-                        (event: ChangeEvent<HTMLInputElement>) => setUsername(event.target.value)}
+                        (e) => setEmail(e.target.value)}
                 />
 
 
@@ -80,12 +53,12 @@ export default function Login() {
                         handleShowPassword
                     }
                     onChange={
-                        (event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
+                        (e) => setPassword(e.target.value)}
 
                 />
+
             </Formulario>
             <ButtonConponent
-                onClick={() => goToHome()}
                 variant="contained"
                 value="Entrar"
                 height="58px"
