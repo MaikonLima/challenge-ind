@@ -3,7 +3,7 @@
 
 Este projeto foi desenvolvido com utilizando as tecnologias mais atuais no mundo. O intuito do sistema é realizar o cadastro de usuários seguindo as regras de aunteticação de usuários com os seguintes perfis, admin e user.
 
-#### Banco de dados está junto desse repositorio
+#### Banco de dados está junto desse repositorio - (MySQL).
 
 ## Funcionalidades
 
