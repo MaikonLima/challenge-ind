@@ -1,32 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { IPaginationProps } from './types';
+import {
+    CurrentPage,
+    NavigatorButton,
+    PaginationBox,
+    PaginationContainer,
+    TotalPages
+} from './styles';
 
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
-import { Container, CurrentPage, Icon, Navigator, TotalPages } from "./styles";
-import { PageNavigatorProps } from "./types";
-
-function PageNavigator({
+export function Pagination({
     currentPage,
-    gobackPage,
-    nextPage,
-    qtdPages,
-}: PageNavigatorProps) {
+    totalPages,
+    totalData,
+    onPageChange
+}: IPaginationProps) {
+    const [actualPage, setActualPage] = useState(currentPage);
+
+    useEffect(() => {
+        setActualPage(currentPage);
+    }, [currentPage]);
+
+    function onNext() {
+        setActualPage((prev) => {
+            if (prev === totalPages) {
+                return prev;
+            }
+            onPageChange(prev + 1);
+            return prev + 1;
+        });
+    }
+
+    function onPrevious() {
+        setActualPage((prev) => {
+            if (prev === 1) {
+                return prev;
+            }
+            onPageChange(prev - 1);
+            return prev - 1;
+        });
+    }
+
     return (
-        <Container>
-            <Navigator disabled={currentPage <= 1} onClick={gobackPage}>
-                <ArrowBackIosIcon sx={{ color: "#0000008A", fontSize: 12 }} />
-            </Navigator>
+        <>
+            <PaginationBox>
+                <PaginationContainer>
+                    <div style={{ display: 'flex' }}>{totalData}</div>
+                </PaginationContainer>
+                <PaginationContainer>
+                    <NavigatorButton onClick={onPrevious}>
+                        <ArrowBackIosIcon style={{ color: "#0000008A" }} />
+                    </NavigatorButton>
 
-            <TotalPages>
-                {"Página"} {currentPage} {"de"} {qtdPages}
-            </TotalPages>
+                    <CurrentPage>{actualPage}</CurrentPage>
 
-            <Navigator disabled={currentPage >= qtdPages} onClick={nextPage}>
-                <ArrowForwardIosIcon sx={{ color: "#0000008A", fontSize: 12 }} />
-            </Navigator>
-        </Container>
+                    <NavigatorButton onClick={onNext}>
+                        <ArrowForwardIosIcon style={{ color: "#0000008A" }} />
+                    </NavigatorButton>
+
+                    <TotalPages>
+                        Página {totalPages}
+                    </TotalPages>
+                </PaginationContainer>
+            </PaginationBox>
+        </>
     );
 }
-
-export default PageNavigator;

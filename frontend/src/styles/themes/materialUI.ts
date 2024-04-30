@@ -36,7 +36,7 @@ export const muiThemeDefault = createTheme({
             default: theme.colors.backgrounds.default,
         },
 
-        contrastThreshold: 3,
+        // contrastThreshold: 3,
         tonalOffset: 0.1,
     },
 });

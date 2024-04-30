@@ -11,6 +11,7 @@ import LoaderLocal from "../../../components/loader_local";
 import Api from "../../../services/api";
 import { toast } from "react-toastify";
 import { IErrors } from "../../../utils/errors-valitade";
+import { IRole } from "../../../utils/types";
 
 
 export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
@@ -19,11 +20,14 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [nivelAcess, setNivelAcess] = useState("");
     const [errors, setErrors] = useState<Array<IErrors>>([]);
-    const [isModalConfirmOpen, setIsModalConfirmOpen] =
-        useState(false);
+    const [perfil_id, setPerfilId] = useState();
+    const [type, setType] = useState<any>();
+
+    const opcoes: IRole[] = [
+        { id: 1, value: "Usuário" },
+        { id: 2, value: "Administrador" },
+    ];
 
     const { data, isLoading, isFetching, refetch } = useQuery(
         ["keyId", id],
@@ -33,7 +37,7 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
                 setName(dataOnSuccess?.users_name);
                 setSurname(dataOnSuccess?.users_surname);
                 setEmail(dataOnSuccess?.users_email);
-                setNivelAcess(dataOnSuccess?.users_access_level)
+                setPerfilId(dataOnSuccess?.user_profile_id);
             },
 
             keepPreviousData: false,
@@ -44,7 +48,8 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
         errors.length === 0 &&
         name?.trim().length >= 5 &&
         (name !== data?.users_name ||
-            email !== data?.users_email);
+            email !== data?.users_email || surname !== data?.users_surname || perfil_id !== data?.user_profile_id
+        );
 
     useEffect(() => {
         setId(keyId);
@@ -56,8 +61,7 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
             "users_name": name,
             "users_surname": surname,
             "users_email": email,
-            "users_password": password,
-            "users_access_level": nivelAcess
+            "user_profile_id": type
         };
 
         await Api.put(`users/${keyId}`, usersPayload)
@@ -74,8 +78,8 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
     async function handleSubmit(event: any) {
         event.preventDefault();
         onEditUser();
-        handleCloseModal();
         refetch();
+        handleCloseModal();
     }
 
     if (!isModalActive) {
@@ -88,6 +92,10 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
 
     function handleCloseModal() {
         closeModal();
+    }
+
+    function handleChange(value: any) {
+        setType(value);
     }
 
     return ReactDOM.createPortal(
@@ -122,22 +130,15 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
                         value={email}
                         onChange={(event: ChangeEvent<HTMLInputElement>,) => setEmail(event.target.value)}
                     />
-
-                    <DefaultInput
-                        width="100%"
-                        type="text"
-                        placeholder="Senha"
-                        value={password}
-                        onChange={(event: ChangeEvent<HTMLInputElement>,) => setPassword(event.target.value)}
-                    />
                     <Select
                         width="100%"
+                        id="types"
+                        label="Nível de Acesso"
+                        required
                         placeholder="Nível de Acesso"
-                        values={[]}
-                        currentValue={""}
-                        onChangeValue={
-                            () => { }
-                        }
+                        values={opcoes}
+                        currentValue={perfil_id}
+                        onChangeValue={handleChange}
                     />
                     <PageActions>
                         <ButtonConponent

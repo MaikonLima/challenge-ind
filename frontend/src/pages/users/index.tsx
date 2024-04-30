@@ -8,7 +8,7 @@ import { useQuery } from 'react-query';
 import { ITableHeader } from '../../components/table_component/types';
 import Api from '../../services/api';
 import Table from '../../components/table_component';
-import { CrudActions, Filters } from './styles';
+import { CrudActions, Filters, Footer, SpanCounterUser } from './styles';
 import { SearchComponent } from '../../components/search_component';
 import ButtonConponent from '../../components/buttom_component';
 import AddIcon from '@mui/icons-material/Add';
@@ -17,30 +17,27 @@ import moment from 'moment';
 import { ModalAlert } from '../../components/alert_dialog_component';
 import EmptyTableImg from '../../assets/empty.jpg';
 import { IGetUser } from '../../services/UsersService';
+import { Pagination } from '../../components/page_navigator';
 
 export default function Users() {
-    const navigate = useNavigate();
     const [searchParam, setSearchParam] = useState('');
     const [pageParam, setPageParam] = useState(1);
     const [userId, setUserId] = useState(0);
     const [activeEdit, setActiveEdit] = useState(false);
     const [activeView, setActiveView] = useState(false);
-    const [Loading, setIsLoading] = useState(false);
     const [active, setActive] = useState(false);
     const [openModalDelete, setOpenModalDelete] = useState(false);
     const [params, setParams] = useState({
         search_name: "",
     });
 
-
-
     const { data, isLoading, refetch } = useQuery(
-        ['users', searchParam, pageParam, userId],
+        ['users', userId, searchParam, pageParam],
         () => {
             const params = new URLSearchParams();
             params.append('page', pageParam.toString());
             if (searchParam.length > 0) params.append('search_name', searchParam);
-            params.append('limit', '10');
+            params.append('limit', '5');
             params.append('orderBy', 'NAME');
             params.append('sort', 'ASC');
 
@@ -93,33 +90,16 @@ export default function Users() {
     });
 
     function handleEdit(user: IGetUser) {
-        setIsLoading(false);
         setUserId(user?.user_id);
         setActiveEdit(!activeEdit);
     }
 
     function handleView(user: IGetUser) {
-        setIsLoading(false);
         setUserId(user?.user_id);
         setActiveView(!activeView);
     }
 
-    const handleResetUser = async () => {
-        setIsLoading(false);
-        await Api.patch(`user/reset/${userId}`)
-            .then(() => {
-                refetch();
-                toast.success("Resetou");
-            })
-            .catch((error) => {
-                const msg = error.response.data.message;
-                toast.error(msg);
-                setIsLoading(false);
-            });
-    };
-
     const handleDeleteUser = async () => {
-        setIsLoading(false);
         await Api.delete(`users/delete/${userId}`)
             .then(() => {
                 refetch();
@@ -127,9 +107,7 @@ export default function Users() {
             })
             .catch((error) => {
                 const msg = error.response.data.message
-
                 toast.error(msg);
-                setIsLoading(false);
             });
     };
 
@@ -145,6 +123,8 @@ export default function Users() {
             };
         });
     };
+
+    console.log(data?.data.items.length);
 
     return (
         <>
@@ -203,20 +183,14 @@ export default function Users() {
                     headers={headers}
                     data={tableData}
                     enableActions
-                    onEdit={
-                        () => {
-                            handleEdit
-                            setActiveEdit(true)
-                        }
-                    }
+                    onEdit={handleEdit}
                     onDetail={handleView}
                     onDelete={() => {
                         setOpenModalDelete(true);
                     }}
-                    onResetPassword={handleResetUser}
                     emptyImage={searchParam.length > 0 ? EmptyTableImg : EmptyTableImg}
                     emptyMessage={searchParam.length > 0 ? "Sem dados no banco" : "Refarça a busca"}
-                    instruction={searchParam.length > 0 ? "" : 'user-instruction'}
+                    instruction={searchParam.length > 0 ? "" : "Instruções de usuários"}
                     loading={isLoading}
                     currentPage={data?.data.meta.currentPage}
                     totalPages={data?.data?.meta.totalPages}
@@ -224,6 +198,26 @@ export default function Users() {
                         setPageParam(page);
                     }}
                 />
+                {data?.data.items.length > 0 && (
+                    <>
+                        <Pagination
+                            totalData={
+                                <>
+                                    {data?.data.meta.totalItems > 0 ? (
+                                        <SpanCounterUser style={{ color: "#0000008A" }}>
+                                            Total de usuários: {data?.data.meta.totalItems}
+                                        </SpanCounterUser>
+                                    ) : null}
+                                </>
+                            }
+                            currentPage={data?.data.meta.currentPage}
+                            totalPages={data?.data?.meta.totalPages}
+                            onPageChange={(page) => {
+                                setPageParam(page);
+                            }}
+                        />
+                    </>
+                )}
             </Box>
         </>
     );

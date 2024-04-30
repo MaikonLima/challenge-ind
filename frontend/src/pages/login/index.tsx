@@ -1,4 +1,4 @@
-import { DivMain, Formulario, TextMain } from "./styles";
+import { BoxForm, DivMain, TextMain } from "./styles";
 import ButtonConponent from "../../components/buttom_component";
 import { DefaultInput } from "../../components/input_component";
 import { SubTitle } from "../dashboard/styles";
@@ -6,7 +6,6 @@ import usersImage from "../../assets/users_login.svg";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/AuthProvider/useGlobalContext";
 import { useNavigate } from "react-router-dom";
-
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
@@ -24,8 +23,8 @@ export default function Login() {
 
     async function HandleLogin(event: React.FormEvent<HTMLDivElement>) {
         event.preventDefault();
+        loginMutation({ email: email, password: password });
         navigate('/home');
-        return await loginMutation({ username: email, password: password });
     }
 
     return (
@@ -34,7 +33,7 @@ export default function Login() {
                 <img src={usersImage} width={150} />
                 <SubTitle>Bem-Vindo ao Sistema de Gerenciamento de Usuários</SubTitle>
             </TextMain>
-            <Formulario onSubmit={() => HandleLogin}>
+            <BoxForm component="form" onSubmit={HandleLogin}>
                 <DefaultInput
                     type="text"
                     placeholder="E-mail"
@@ -57,13 +56,14 @@ export default function Login() {
 
                 />
 
-            </Formulario>
             <ButtonConponent
                 variant="contained"
                 value="Entrar"
                 height="58px"
                 type="submit"
             />
+            </BoxForm>
+
         </DivMain>
     )
 }

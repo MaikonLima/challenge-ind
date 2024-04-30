@@ -1,15 +1,15 @@
 import ReactDOM from "react-dom";
 
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-
 import {
     ActionsLogout,
-    ButtonModalNo,
-    ButtonModalYes,
+    BodyModal,
     ContainerConfirm,
     Overlay,
 } from "./styles";
 import { ModalProps } from "../types";
+import { useGlobalContext } from "../../../context/AuthProvider/useGlobalContext";
+import ButtonConponent from "../../buttom_component";
+
 
 export function ModalLogout({
     isModalActive,
@@ -19,10 +19,12 @@ export function ModalLogout({
 }: ModalProps) {
     const modalRoot = document.getElementById("modal") as HTMLElement;
 
-    // const { Logout } = useAuthGlobal();
+    const {
+        Logout,
+    } = useGlobalContext();
 
     function handleLogout() {
-        // Logout();
+        Logout();
     }
 
     if (!isModalActive) {
@@ -38,65 +40,34 @@ export function ModalLogout({
                 <div className="text-group">
                     {title ? (
                         <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                            }}
                         >
-                            <ErrorOutlineIcon
-                                style={{
-                                    marginRight: 7,
-                                }}
-                            />
                             <h1 style={{ fontSize: 18 }}>{title}</h1>
                         </div>
                     ) : (
                         <h1>Sair do sistema</h1>
                     )}
                     {message ? (
-                        <p>{message}</p>
+                        <BodyModal style={{ color: "#7D7D8E", fontSize: 14 }}>{message}</BodyModal>
                     ) : (
-                        <p
-                            style={{
-                                color: "#7D7D8E",
-                                fontSize: 14,
-                                marginRight: 50,
-                            }}
-                        >
+                        <BodyModal style={{ color: "#7D7D8E", fontSize: 14 }}>
                             Você tem certeza que deseja sair do sistema?
-                        </p>
+                        </BodyModal>
                     )}
                 </div>
                 <ActionsLogout>
-                    <ButtonModalNo
-                        style={{
-                            width: "5rem",
-                            height: "2rem",
-                            color: "#7D7D8E",
-                            backgroundColor: "transparent",
-                            border: "none",
-                        }}
+                    <ButtonConponent
+                        variant="outlined"
+                        value="Não"
+                        width="150px"
                         onClick={closeModal}
-                    >
-                        Não
-                    </ButtonModalNo>
-                    <ButtonModalYes
-                        style={{
-                            width: `${({ fullWidth }: any) =>
-                                fullWidth && "100%"}`,
-                            height: `${({ fullWidth }: any) =>
-                                fullWidth && "100%"}`,
-                            color: "#1976d2",
-                            backgroundColor: "transparent",
-                            border: "none",
-                        }}
+                    />
+                    <ButtonConponent
+                        value="Sim"
+                        width="150px"
                         onClick={() => {
-                            // closeModal();
                             handleLogout();
                         }}
-                    >
-                        Sim
-                    </ButtonModalYes>
+                    />
                 </ActionsLogout>
             </ContainerConfirm>
         </Overlay>,

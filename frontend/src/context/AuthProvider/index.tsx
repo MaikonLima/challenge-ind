@@ -3,7 +3,6 @@ import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { useMutation } from 'react-query';
 import { IAuthContext, IAuthProvider, ILoginCredentials, IUser } from './types';
 import { isAuthenticated } from './utils';
-import { Navigate, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { login, logout } from './services';
@@ -30,10 +29,9 @@ export function AuthProvider({ children }: IAuthProvider) {
         {
             onSuccess: (response: AxiosResponse) => {
                 const user = {
-                    name: response.data.name,
+                    email: response.data.email,
                     profile: response.data.profile,
                     access_token: response.data.access_token,
-                    first_access: response.data.first_access_token,
                     refresh_token: response.data.refresh_token
                 };
 
@@ -50,7 +48,6 @@ export function AuthProvider({ children }: IAuthProvider) {
     );
 
     const handleLogout = () => {
-
         localStorage.clear();
         localStorage.setItem("is_logged_in", "false");
     };

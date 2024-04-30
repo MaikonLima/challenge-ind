@@ -1,53 +1,38 @@
-import { IconButton } from "@mui/material";
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Container = styled.div`
+export const PaginationContainer = styled.div`
   display: flex;
-  gap: ${({ theme }: any) => theme.spacing.small};
-`;
-
-export const CurrentPage = styled.div`
-  display: flex;
-  justify-content: center;
   align-items: center;
-
-  width: 36px;
-  height: 36px;
-
-  font-size: ${({ theme }: any) => theme.fonts.size.small};
-
-  color: ${({ theme }: any) => theme.colors.text.default.light};
-  border-radius: ${({ theme }: any) => theme.shapes.radius.small};
+  margin: 1rem;
+`;
+export const PaginationBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 4px #00000029;
+  border-radius: 0px 0px 5px 5px;
 `;
 
-export const Navigator = styled(IconButton)`
-  && {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+export const NavigatorButton = styled.button`
+  display: flex;
+  background-color: transparent;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.4s ease;
+  border: none;
 
-    width: 36px;
-    height: 36px;
-
-    background-color: ${({ theme }) => theme.colors.primary};
-
-    border-radius: 50%;
-
-    border: 2px solid #d9e1e7;
-    opacity: 1;
-
-    opacity: ${({ disabled }) => (disabled ? 0.3 : 1)};
+  &:hover {
+    background-color: #00939318;
   }
 `;
 
-export const TotalPages = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: ${({ theme }) => theme.fonts.size.small};
+export const CurrentPage = styled.div`
+  background-color: #1976d2;
+  color: #ffffff;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
 `;
 
-export const Icon = styled.img`
-  width: ${({ pagination }: any) => (pagination ? "7px" : "auto")};
-  height: ${({ pagination }: any) => (pagination ? "12px" : "auto")};
+export const TotalPages = styled.div`
+  color: #616c84;
 `;

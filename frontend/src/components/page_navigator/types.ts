@@ -1,6 +1,9 @@
-export type PageNavigatorProps = {
+export interface IPaginationProps {
+    totalPages: number;
     currentPage: number;
-    gobackPage: any;
-    nextPage: any;
-    qtdPages: number;
-};
+    pageSize?: number;
+
+    totalData?: any;
+
+    onPageChange: (page: number) => void;
+}

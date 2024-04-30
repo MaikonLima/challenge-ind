@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import BarChart from "../../components/chart_bar/chartBar";
 import jsonData from './data.json';
 import { SubTitle } from "./styles";

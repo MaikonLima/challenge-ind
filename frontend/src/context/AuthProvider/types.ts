@@ -1,15 +1,14 @@
 import { Dispatch, SetStateAction } from 'react';
 
 export interface IUser {
-    name: string;
+    email: string;
     profile: string;
     access_token: string;
-    first_access: string;
     refresh_token: string;
 }
 
 export interface ILoginCredentials {
-    username: string;
+    email: string;
     password: string;
 }
 
@@ -20,7 +19,7 @@ export interface IAuthContext {
     isAuthenticated: () => boolean;
     authenticated: boolean;
     setAuthenticated: Dispatch<SetStateAction<boolean>>;
-    accessToken?: string | undefined;
+    access_token?: string | undefined;
 }
 
 export interface IAuthProvider {
@@ -30,7 +29,7 @@ export interface IAuthProvider {
 export interface IJwtPayload {
     sub: number;
     name: string;
-    username: string;
+    email: string;
     profile: string[];
     iat: number;
     exp: number;

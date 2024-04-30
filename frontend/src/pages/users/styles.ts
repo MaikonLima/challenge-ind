@@ -217,3 +217,14 @@ export const DivSearch = styled.div`
         margin-left: 65px;
     }
 `;
+
+export const Footer = styled.div`
+  display: flex;
+  gap: 5px;
+  padding-left: 2rem;
+  color:"#0000008A";
+`;
+
+export const SpanCounterUser = styled.span`
+  color:"#0000008A";
+`;

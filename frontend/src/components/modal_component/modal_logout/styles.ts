@@ -51,6 +51,8 @@ export const ContainerConfirm = styled(motion.div).attrs(() => ({
     text-align: center;
 
     .text-group {
+        display: flex;
+        flex-direction: column;
         h1 {
             padding-bottom: 22px;
             font-size: 26px;
@@ -134,8 +136,6 @@ export const ContainerFinish = styled(motion.div).attrs(() => ({
 }))`
     background: #fff;
     border-radius: 4px;
-    /* width: 568px;
-    height: 291px; */
     width: ${({ fullWidth }: any) => fullWidth && "100%"};
     height: ${({ fullWidth }: any) => fullWidth && "100%"};
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
@@ -176,25 +176,6 @@ export const ContainerFinish = styled(motion.div).attrs(() => ({
             background-color: #ccc;
         }
     }
-`;
-export const ButtonModalNo = styled.button<any>`
-    width: 5rem;
-    height: 2rem;
-    color: #ff9c1a;
-    background-color: transparent;
-    border: none;
-    &:hover {
-        background-color: #ff9c1a;
-        opacity: 10;
-    }
-`;
-
-export const ButtonModalYes = styled.button<any>`
-    width: 5rem;
-    height: 2rem;
-    color: #ff9c1a;
-    background-color: transparent;
-    border: none;
 `;
 
 export const Actions = styled.div`
@@ -241,5 +222,11 @@ export const ActionsLogout = styled.div`
     display: flex;
     align-items: center;
     margin-top: 35px;
-    margin-right: 10rem;
+    justify-content: center;
+    gap: 20px;
+`;
+
+export const BodyModal = styled.p`
+    color: "#7D7D8E";
+    font-size: 14;
 `;

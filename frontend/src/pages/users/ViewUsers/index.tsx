@@ -15,6 +15,7 @@ export function ModalViewUsers({ keyId, closeModal, isModalActive }: any) {
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
     const [nivelAcess, setNivelAcess] = useState("");
+    const [profile, setProfile] = useState<number>();
 
     const { data, isLoading, isFetching } = useQuery(
         ["keyId", id],
@@ -25,11 +26,13 @@ export function ModalViewUsers({ keyId, closeModal, isModalActive }: any) {
                 setSurname(dataOnSuccess?.users_surname);
                 setEmail(dataOnSuccess?.users_email);
                 setNivelAcess(dataOnSuccess?.users_access_level)
+                setProfile(dataOnSuccess?.user_profile_id);
             },
 
             keepPreviousData: false,
         },
     );
+    console.log(profile)
 
     useEffect(() => {
         setId(keyId);
@@ -47,18 +50,26 @@ export function ModalViewUsers({ keyId, closeModal, isModalActive }: any) {
         return <LoaderLocal />;
     }
 
+    function getAcessValue(value: any) {
+        if (value === 1) {
+            return "Ativo"
+        }
+        return "Inativo";
+    }
+
     return ReactDOM.createPortal(
         <Overlay>
             <Wrapper>
                 <Title>Visualização de usuário</Title>
                 <Form>
                     <BoxName>
-                        <DefaultInput disabled={true} value={name} width="100%"></DefaultInput>
+                        <DefaultInput disabled={true} label="Nome" value={name} width="100%"></DefaultInput>
 
-                        <DefaultInput disabled={true} value={surname} width="100%" />
+                        <DefaultInput disabled={true} label="Sobrenome" value={surname} width="100%" />
                     </BoxName>
-                    <DefaultInput disabled={true} value={email} width="100%" />
-                    <DefaultInput disabled={true} value={nivelAcess} width="100%" />
+                    <DefaultInput disabled={true} label="E-mail" value={email} width="100%" />
+                    <DefaultInput disabled={true} label="Status" value={getAcessValue(nivelAcess)} width="100%" />
+                    <DefaultInput disabled={true} label="Perfil" value={profile === 1? "Usuário comum": "Administrador"} width="100%" />
                     <PageActions>
                         <ButtonConponent
                             variant="outlined"

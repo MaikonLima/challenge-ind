@@ -101,7 +101,7 @@ export const Modal = ({
                         style={{
                             width: "5rem",
                             height: "2rem",
-                            color: "#FF9C1A",
+                            color: "#1976d2",
                             backgroundColor: "transparent",
                             border: "none",
                             fontSize: 16,

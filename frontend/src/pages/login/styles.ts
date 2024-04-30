@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import styled from "styled-components";
 
 export const DivMain = styled.div`
@@ -18,6 +19,12 @@ export const DivMain = styled.div`
 `;
 
 export const Formulario = styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+`;
+
+export const BoxForm = styled(Box)`
     display: flex;
     flex-direction: column;
     gap: 30px;
