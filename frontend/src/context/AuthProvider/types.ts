@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction } from 'react';
 
 export interface IUser {
     email: string;
-    profile: string;
     access_token: string;
     refresh_token: string;
 }

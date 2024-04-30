@@ -25,10 +25,10 @@ export class AuthController {
     }
 
     @Post('/logout')
-    @ApiBearerAuth()
+    @IgnoreJwtGuard()
     @UseGuards(JwtAuthGuard)
     async logout(@Request() payload: any) {
-        return this.authService.removeRefreshToken(payload.user.sub);
+        return this.authService.removeRefreshToken(payload.user);
     }
 
     @Post('/refresh_token')

@@ -23,7 +23,6 @@ export class UsersController {
     }
 
     @Put(':id')
-    @IgnoreJwtGuard()
     async updateUser(
         @Param('id') id: number,
         @Body() updateDto: UpdateUserDto

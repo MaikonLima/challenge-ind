@@ -30,12 +30,9 @@ export function AuthProvider({ children }: IAuthProvider) {
             onSuccess: (response: AxiosResponse) => {
                 const user = {
                     email: response.data.email,
-                    profile: response.data.profile,
                     access_token: response.data.access_token,
                     refresh_token: response.data.refresh_token
                 };
-
-
                 setUser(user);
                 setLocalStorage('user', user);
                 setAccessToken(user.access_token);
