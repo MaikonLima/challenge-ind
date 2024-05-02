@@ -94,6 +94,8 @@ Inicie o servidor
   npm run start:dev
 ```
 
+## Visão do Sistema
+
 <div>
   <p>
     <img src="./images/login_screen.png" />
