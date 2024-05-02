@@ -187,7 +187,7 @@ export default function Users() {
                         setOpenModalDelete(true);
                     }}
                     emptyImage={searchParam.length > 0 ? EmptyTableImg : EmptyTableImg}
-                    emptyMessage={searchParam.length > 0 ? "Sem dados no banco" : "Refarça a busca"}
+                    emptyMessage={searchParam.length > 0 ? "Sem usuários cadastrados" : "Refarça a busca"}
                     instruction={searchParam.length > 0 ? "" : "Instruções de usuários"}
                     loading={isLoading}
                     currentPage={data?.data.meta.currentPage}

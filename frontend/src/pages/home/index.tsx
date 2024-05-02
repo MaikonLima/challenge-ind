@@ -6,6 +6,7 @@ import { Title } from "../dashboard/styles";
 import Users from "../users";
 import { ModalLogout } from "../../components/modal_component/modal_logout";
 import { CustomTabPanel, a11yProps } from "../../components/tab_component";
+import { ModalAlert } from "../../components/alert_dialog_component";
 
 export default function BasicTabs() {
     const [value, setValue] = useState(0);
@@ -21,11 +22,15 @@ export default function BasicTabs() {
 
     return (
         <Container >
-            <ModalLogout
-                title={"Sair do sistema"}
-                message="Tem certeza que seja sair do sistema?"
-                isModalActive={modalLogout}
-                closeModal={handleCloseLogoutModal}
+            <ModalAlert
+                open={modalLogout}
+                isConfirm={true}
+                title="Sair do sistemas?"
+                content="Tem certeza que deseja sair do sistema?"
+                handleClose={(result) => {
+                    if (result) handleCloseLogoutModal();
+                    setModalLogout(false);
+                }}
             />
             <Box sx={{ width: '100%' }}>
                 <Box sx={{ borderBottom: 1 }}>

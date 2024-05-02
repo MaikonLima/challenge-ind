@@ -23,6 +23,8 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
     const [errors, setErrors] = useState<Array<IErrors>>([]);
     const [perfil_id, setPerfilId] = useState();
     const [type, setType] = useState<any>();
+    const [accessLevel, setAccessLevel] = useState();
+    console.log(accessLevel)
 
     const opcoes: IRole[] = [
         { id: 1, value: "Usuário" },
@@ -37,7 +39,7 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
                 setName(dataOnSuccess?.users_name);
                 setSurname(dataOnSuccess?.users_surname);
                 setEmail(dataOnSuccess?.users_email);
-                setPerfilId(dataOnSuccess?.user_profile_id);
+                setAccessLevel(dataOnSuccess?.user_profile_id);
             },
 
             keepPreviousData: false,
@@ -98,6 +100,14 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
         setType(value);
     }
 
+    function getProfile(value: any) {
+        if (value === 1) {
+            return "Usuário"
+        } else {
+            return "Administrador"
+        }
+    }
+
     return ReactDOM.createPortal(
         <Overlay>
             <Wrapper>
@@ -136,6 +146,7 @@ export function ModalEditUser({ keyId, closeModal, isModalActive }: any) {
                         label="Nível de Acesso"
                         required
                         placeholder="Nível de Acesso"
+                        value={getProfile(accessLevel)}
                         values={opcoes}
                         currentValue={perfil_id}
                         onChangeValue={handleChange}

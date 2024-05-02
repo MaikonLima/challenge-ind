@@ -94,6 +94,36 @@ Inicie o servidor
   npm run start:dev
 ```
 
+<div>
+  <p>
+    <img src="./images/login_screen.png" />
+  </p>
+
+  <p>
+    <img src="./images/dashboard_screen.png" />
+  </p>
+
+  <p>
+    <img src="./images/users_screen.png" />
+  </p>
+
+  <p>
+    <img src="./images/view_user.png" />
+  </p>
+
+  <p>
+    <img src="./images/edit_screen.png" />
+  </p>
+
+  <p>
+    <img src="./images/delete_modal.png" />
+  </p>
+
+  <p>
+    <img src="./images/search_function.png" />
+  </p>
+</div>
+
 ## Autores
 
 - [@maikonLima](https://www.github.com/maikonLima)
