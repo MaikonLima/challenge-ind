@@ -22,7 +22,15 @@ export class UsersController {
         return { user: newUser };
     }
 
+    @Post('new')
+    @IgnoreJwtGuard()
+    async createNewUser(@Body() createUserDto: CreateUserDto) {
+        const newUser = await this.userService.createUser(createUserDto);
+        return { user: newUser };
+    }
+
     @Put(':id')
+    @IgnoreJwtGuard()
     async updateUser(
         @Param('id') id: number,
         @Body() updateDto: UpdateUserDto

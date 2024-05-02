@@ -70,7 +70,7 @@ export class UsersService {
             .createQueryBuilder('users')
             .where('users.user_id = :id', { id })
             .getOne();
-
+            
         return user ? user : null;
     }
 
@@ -138,20 +138,8 @@ export class UsersService {
     }
 
     async updateRefreshToken(id: number, refresh_token: string) {
-
-        if (id > ObjectSize.INTEGER) {
-            throw new BadRequestException(new ErroResponse(CodeError.INVALID_NUMBER, `Número de id inválido`, CodeObject.ID))
-        }
-
-        const user = await this.getById(id)
-
-        if (!user) {
-            throw new NotFoundException(new ErroResponse(CodeError.NOT_FOUND, `Usuario com id ${id} não existe`, CodeObject.USER))
-        }
-
-        user.user_refresh_token = refresh_token
+        const user = await this.getById(id);
 
         await this.userRepository.save(user)
-
     }
 }

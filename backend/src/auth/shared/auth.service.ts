@@ -75,11 +75,7 @@ export class AuthService {
 
 
     async removeRefreshToken(id: number): Promise<any> {
-        const user = await this.userService.getById(id)
-
-        if (!user) {
-            throw new HttpException('User with this enrollment does not exist', HttpStatus.NOT_FOUND);
-        }
+        const user = await this.userService.getById(id);
 
         await this.userService.updateRefreshToken(user.user_id, null);
     }

@@ -10,11 +10,14 @@ import Users from "../pages/users/TablesUsers";
 import Home from "../pages/home";
 import PrivateRoute from "./PrivateRoute";
 import { NotFound } from "../pages/notfound";
+import NewUserLogin from "../pages/login/NewUser";
 
 export default function Routes() {
   return (
     <RoutesWrapper>
       <Route path="/" element={<Login />} />
+
+      {/* <Route path="/new-user" element={<NewUserLogin />} /> */}
 
       <Route path="*" element={<NotFound />} />
 

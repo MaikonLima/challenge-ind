@@ -24,6 +24,7 @@ export function AuthProvider({ children }: IAuthProvider) {
         }
     }, [authenticated]);
 
+
     const { mutate: loginMutation } = useMutation(
         async (credentials: ILoginCredentials) => login(credentials),
         {

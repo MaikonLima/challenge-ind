@@ -32,7 +32,6 @@ export function ModalViewUsers({ keyId, closeModal, isModalActive }: any) {
             keepPreviousData: false,
         },
     );
-    console.log(profile)
 
     useEffect(() => {
         setId(keyId);
@@ -69,7 +68,7 @@ export function ModalViewUsers({ keyId, closeModal, isModalActive }: any) {
                     </BoxName>
                     <DefaultInput disabled={true} label="E-mail" value={email} width="100%" />
                     <DefaultInput disabled={true} label="Status" value={getAcessValue(nivelAcess)} width="100%" />
-                    <DefaultInput disabled={true} label="Perfil" value={profile === 1? "Usuário comum": "Administrador"} width="100%" />
+                    <DefaultInput disabled={true} label="Perfil" value={profile === 1 ? "Usuário comum" : "Administrador"} width="100%" />
                     <PageActions>
                         <ButtonConponent
                             variant="outlined"

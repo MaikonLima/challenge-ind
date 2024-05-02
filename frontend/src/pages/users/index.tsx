@@ -124,8 +124,6 @@ export default function Users() {
         });
     };
 
-    console.log(data?.data.items.length);
-
     return (
         <>
             <ModalRegisterUser
